@@ -1,11 +1,5 @@
 package com.lvwang.osf.dao.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,22 +8,11 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.SetOperations;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.lvwang.osf.dao.NotificationDAO;
 import com.lvwang.osf.mappers.NotificationMapper;
-import com.lvwang.osf.model.Event;
 import com.lvwang.osf.model.Notification;
 import com.lvwang.osf.util.Dic;
 
@@ -195,8 +178,8 @@ public class NotificationDAOImpl{
 	public void refreshNotification(Notification notification) {
 		//hashOps.increment(NOTIFY_KEY+notification.getNotified_user(), 
 		//				  Dic.toNotifyTypeDesc(notification.getNotify_type()), 1);
-		long count = hashOps.get(NOTIFY_KEY+notification.getNotified_user(), Dic.toNotifyTypeDesc(notification.getNotify_type()));
-		hashOps.put(NOTIFY_KEY+notification.getNotified_user(), Dic.toNotifyTypeDesc(notification.getNotify_type()), count+1);
+		Long count = hashOps.get(Dic.toNotifyTypeDesc(notification.getNotify_type()), NOTIFY_KEY+notification.getNotified_user());
+		hashOps.put(NOTIFY_KEY+notification.getNotified_user(), Dic.toNotifyTypeDesc(notification.getNotify_type()), null == count ? 0L : count + 1);
 	}
 	
 	public Map<String, Long> getNotificationsCount(int user_id) {
