@@ -1,32 +1,15 @@
 package com.lvwang.osf.dao.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.lvwang.osf.dao.EventDAO;
 import com.lvwang.osf.mappers.EventMapper;
 import com.lvwang.osf.model.Event;
-import com.lvwang.osf.model.Post;
-import com.lvwang.osf.service.TagService;
-import com.lvwang.osf.util.Dic;
 
 @Repository("eventDao")
 public class EventDAOImpl implements EventDAO{
