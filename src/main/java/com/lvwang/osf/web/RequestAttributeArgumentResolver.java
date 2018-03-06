@@ -1,8 +1,5 @@
 package com.lvwang.osf.web;
 
-import java.lang.annotation.Annotation;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;

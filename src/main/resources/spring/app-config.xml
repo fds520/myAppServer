@@ -28,7 +28,17 @@
 		<property name="password" value="${jdbc.password}" />
 		<property name="initialSize" value="10" />
 		<property name="maxActive" value="50" />
-	
+		<!--连接数据库超时的解决方法-->
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="testWhileIdle" value="true" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="90" />
+		<property name="logAbandoned" value="false" />
+		<property name= "timeBetweenEvictionRunsMillis" value="30000" />
+		<property name= "numTestsPerEvictionRun" value="30" />
+		<property name="minEvictableIdleTimeMillis" value="1800000" />
+		<property name="validationQuery" value="SELECT 1" />
 	</bean>
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<constructor-arg ref="dataSource" />
